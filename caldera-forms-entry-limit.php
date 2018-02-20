@@ -5,6 +5,7 @@
  * Version: 1.0
  * Author: Alexander Hornig
  * Author URI: https://h-software.de
+ * License: APGL-3.0
  */
 
 class CalderaFormsEntryLimit {
@@ -12,6 +13,7 @@ class CalderaFormsEntryLimit {
 		add_action( 'caldera_forms_general_settings_panel', [ $this, 'settings' ] );
 		add_action( 'caldera_forms_submit_start', [ $this, 'submit_check' ], 10, 2 );
 		add_filter( 'caldera_forms_render_get_form', [ $this, 'render_check' ], 10, 2 );
+		add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
 	}
 	
 	public function settings( array $element ) {
@@ -54,7 +56,7 @@ class CalderaFormsEntryLimit {
 	protected function check_limit( array $form ) {
 		global $referrer;
 		
-		// this only makes sence, if an entry limit is given
+		// this only makes sense, if an entry limit is given
 		if( !isset( $form['entry_limit'] ) || ( empty( $form['entry_limit'] ) && $form['entry_limit'] != 0 ) || !is_numeric( $form['entry_limit'] ) ) return false;
 		
 		// count the entries
@@ -72,6 +74,10 @@ class CalderaFormsEntryLimit {
 		}
 		
 		return false;
+	}
+	
+	public function load_textdomain() {
+		load_plugin_textdomain( 'caldera_forms_entry_limit', false, basename( dirname( __FILE__ ) ) . '/lang' );
 	}
 }
 
