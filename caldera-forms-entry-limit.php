@@ -19,7 +19,7 @@ class CalderaFormsEntryLimit {
 	public function settings( array $element ) {
 		?>
 		<div class="caldera-config-group">
-			<label for="entry_limit"><?php _e( 'Entry Limit', 'caldera_forms_entry_limit' ); ?></label>
+			<label for="entry_limit"><?php _e( 'Entry Limit', 'caldera-forms-entry-limit' ); ?></label>
 
 			<div class="caldera-config-field">
 				<input type="number" name="config[entry_limit]" id="entry_limit" value="<?php echo esc_attr( @$element['entry_limit'] ); ?>">
@@ -27,7 +27,7 @@ class CalderaFormsEntryLimit {
 		</div>
 		
 		<div class="caldera-config-group" style="width:500px;">
-			<label for="entry_limit"l><?php _e( 'Entry Limit Reached Message', 'caldera_forms_entry_limit' ); ?></label>
+			<label for="entry_limit"l><?php _e( 'Entry Limit Reached Message', 'caldera-forms-entry-limit' ); ?></label>
 
 			<div class="caldera-config-field">
 				<span style="position:relative;display:inline-block; width:100%;">
@@ -66,7 +66,7 @@ class CalderaFormsEntryLimit {
 		if( $form['entry_limit'] <= $entries_count ) {
 			// if the message is empty, show the default one
 			if( !isset( $form['entry_limit_message'] ) || empty( $form['entry_limit_message'] ) ) {
-				return __( 'The maximum number of submission was reached. Submitting the form is not possible anymore.', 'caldera_forms_entry_limit' );
+				return __( 'The maximum number of submission was reached. Submitting the form is not possible anymore.', 'caldera-forms-entry-limit' );
 			}
 			else {
 				return esc_html( $form['entry_limit_message'] );
@@ -77,7 +77,7 @@ class CalderaFormsEntryLimit {
 	}
 	
 	public function load_textdomain() {
-		load_plugin_textdomain( 'caldera_forms_entry_limit', false, basename( dirname( __FILE__ ) ) . '/lang' );
+		load_plugin_textdomain( 'caldera-forms-entry-limit', false, basename( dirname( __FILE__ ) ) . '/lang' );
 	}
 }
 
